@@ -6,37 +6,11 @@ DOCKER_SOCK=/var/run/docker.sock
 DOCKER_GID=$(stat -c '%g' ${DOCKER_SOCK})
 sed -i -e "s/^docker:\([^:]*\):[0-9]*/docker:\1:${DOCKER_GID}/" /etc/group
 
-if [ "x$WITH_JETTYCAMOLE" != "x" ]; then
-	#Remove X1 and X2 configuration
-	sudo rm /tmp/.X11-unix/X1
-	sudo rm /tmp/.X11-unix/X2
+T1=`docker ps | awk '{print $NF}' | grep docker0`
+sed -i -e "s/'{{ .NetworkSettings.IPAddress }}' docker0/'{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $T1/" /home/labtainer/labtainer/labtainer-student/bin/labutils.py
 
-	#Generate a password for vncserver
-	sudo -u labtainer -i mkdir -p /home/labtainer/.vnc/
-	sudo -u labtainer -i echo toto123 | /usr/bin/vncpasswd -f > /home/labtainer/.vnc/passwd 
-	chmod 664 .vnc/passwd
-
-	#Launch vncserver
-	sudo -u labtainer -i vncserver -localhost no -passwd .vnc/passwd
-
-	#Starting Jettycamole
-	docker rm -f jettycamole
-        docker run -td --name=jettycamole --hostname=jettycamole --link=docker0 -p 8080:8080 goncalvest/guacamole.labtainer
-
-	#Modify instructions with the ip of container jettycamole
-	myip=$(getent hosts jettycamole | awk '{print $1}')
-	echo " - open your web browser
- - go to: http://your_ip_address:8080/guacamole/
- - username is labtainer and password is guacamole
- - on the page, click on "labtainer"" >> /etc/motd
-	sudo sed  -i -e "s,http://your_ip_address,http://$myip,g" /etc/motd
-
-	#Display instructions
-	cat /etc/motd
-else
-	cat /etc/motd
-fi
-
+cat /etc/motd
+xterm &
 #Login with user : labtainer
 sudo -u labtainer -i
 

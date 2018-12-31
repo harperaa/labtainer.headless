@@ -12,5 +12,5 @@ sed -i -e "s/'{{ .NetworkSettings.IPAddress }}' docker0/'{{range .NetworkSetting
 cat /etc/motd
 
 #Login with user : labtainer
-sudo -u labtainer -i
+sudo -u labtainer -i xterm &
 

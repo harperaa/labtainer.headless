@@ -10,7 +10,7 @@ T1=`docker ps | awk '{print $NF}' | grep docker0`
 sed -i -e "s/'{{ .NetworkSettings.IPAddress }}' docker0/'{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $T1/" /home/labtainer/labtainer/labtainer-student/bin/labutils.py
 
 cat /etc/motd
-xterm &
+xterm -hold &
 #Login with user : labtainer
 sudo -u labtainer -i
 

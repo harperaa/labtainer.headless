@@ -1,0 +1,7 @@
+===================================================================
+= Labtainers Docker container & jettycamole                       =
+===================================================================
+
+To start labs:
+ - cd ~/labtainer/labtainer-student
+ - labtainer [labname]

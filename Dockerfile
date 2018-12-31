@@ -40,4 +40,5 @@ ENV NO_AT_BRIDGE=1
 USER root
 COPY ./motd /etc/motd
 COPY ./docker-entrypoint /
+COPY ./wait-for-it.sh /
 ENTRYPOINT ["/docker-entrypoint"]

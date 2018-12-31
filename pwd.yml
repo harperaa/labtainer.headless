@@ -1,0 +1,26 @@
+version: '3'
+services:
+  docker0:
+    image: harperaa/labtainer.master
+    environment:
+      - DISPLAY=novnc:0.0 
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - x11
+    depends_on:
+      - novnc
+    entrypoint: ["/docker-entrypoint"]
+    tty: true
+  novnc:  
+    image: psharkey/novnc:latest
+    environment:
+      # Adjust to your screen size
+      - DISPLAY_WIDTH=1024
+      - DISPLAY_HEIGHT=768
+    ports:
+      - "8080:8080"
+    networks:
+      - x11
+networks:
+  x11:

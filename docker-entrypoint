@@ -1,14 +1,5 @@
 #!/bin/bash
 
-#Set GID of docker's group with the GID of the host
-
-DOCKER_SOCK=/var/run/docker.sock
-DOCKER_GID=$(stat -c '%g' ${DOCKER_SOCK})
-sed -i -e "s/^docker:\([^:]*\):[0-9]*/docker:\1:${DOCKER_GID}/" /etc/group
-
-T1=`docker ps | awk '{print $NF}' | grep docker0`
-sed -i -e "s/'{{ .NetworkSettings.IPAddress }}' docker0/'{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $T1/" /home/labtainer/labtainer/labtainer-student/bin/labutils.py
-
 cat /etc/motd
 
 #Login with user : labtainer

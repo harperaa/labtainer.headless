@@ -68,6 +68,8 @@ services:
     image: harperaa/labtainer.master
     environment:
       - DISPLAY=novnc:0.0 
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - mynetwork
     depends_on:

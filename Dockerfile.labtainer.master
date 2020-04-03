@@ -80,7 +80,7 @@ COPY --chown=labtainer:labtainer labutils.py /home/labtainer/labtainer/labtainer
 #VOLUME /var/run/docker.sock /var/run/docker.sock
 ENV DISPLAY :0
 ENV NO_AT_BRIDGE=1
-COPY ./motd /etc/motd
-COPY ./docker-entrypoint /
-COPY ./wait-for-it.sh /
+COPY  --chown=labtainer:labtainer ./motd /etc/motd
+COPY  --chown=labtainer:labtainer ./docker-entrypoint /
+COPY  --chown=labtainer:labtainer ./wait-for-it.sh /
 

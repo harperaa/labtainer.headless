@@ -77,7 +77,6 @@ COPY --chown=labtainer:labtainer bashrc.labtainer.master /home/labtainer
 RUN cat bashrc.labtainer.master >>/home/labtainer/.bashrc
 
 COPY --chown=labtainer:labtainer labutils.py /home/labtainer/labtainer/labtainer-student/bin/
-#VOLUME /var/run/docker.sock /var/run/docker.sock
 ENV DISPLAY :0
 ENV NO_AT_BRIDGE=1
 COPY  --chown=labtainer:labtainer ./motd /etc/motd

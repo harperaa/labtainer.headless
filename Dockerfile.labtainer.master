@@ -1,4 +1,4 @@
-student@ubuntu:~/labtainer/trunk/scripts/designer$ cat base_dockerfiles/Dockerfile.labtainer.master 
+# student@ubuntu:~/labtainer/trunk/scripts/designer$ cat base_dockerfiles/Dockerfile.labtainer.master 
 #
 # Create a master Labtainer image for use in running Labtainers from a container
 # on any system that has Docker installed, withou having to install Labtainers.
@@ -63,6 +63,7 @@ RUN  apt-get install -y --no-install-recommends \
 
 RUN useradd -ms /bin/bash labtainer
 RUN usermod -aG docker labtainer
+RUN newgrp docker
 
 USER labtainer
 WORKDIR /home/labtainer

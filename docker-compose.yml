@@ -50,6 +50,8 @@ services:
       - mynetwork
     volumes: 
       - ./nginx-default.conf:/etc/nginx/conf.d
+#    extra_hosts:
+#      - "host.docker.internal:$DOCKER_INTERNAL_IP"
 
   novnc:
     image: psharkey/novnc:latest

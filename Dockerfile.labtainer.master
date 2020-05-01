@@ -69,6 +69,12 @@ RUN newgrp docker
 USER labtainer
 WORKDIR /home/labtainer
 
+#ensures that /var/run/docker.sock exists
+RUN touch /var/run/docker.sock
+
+#changes the ownership of /var/run/docker.sock
+RUN chown root:docker /var/run/docker.sock
+
 COPY --chown=labtainer:labtainer labtainer.tar /home/labtainer
 RUN tar xf labtainer.tar
 RUN rm labtainer.tar

@@ -1,4 +1,4 @@
-0. move motd docker-entrypoint and wait-for-it.sh into the following directory on labtainer vm: student@ubuntu:~/labtainer/trunk/scripts/designer/bin$
+0. move motd docker-entrypoint and wait-for-it.sh into the following directory on labtainer vm: student@ubuntu:~/labtainer/trunk/scripts/designer/workspace_master$
 
 1.  add --no-cache to build line of ./create_master_image.sh in following directory on labtainer vm student@ubuntu:~/labtainer/trunk/scripts/designer/bin$ 
 

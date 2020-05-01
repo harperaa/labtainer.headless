@@ -1,10 +1,17 @@
 #labtainer.headless
 
 Install
-1. Build the fresh-nginx:latest
+0. Build the fresh-nginx:latest
 `docker build -t fresh-nginx:latest .`
-2. On labtainer vm, build the labtainer.master file and push it to dockerhub, see instructions in labtainer.master.create.
-3. Note: for linux systems as host of docker, you will have to set the following environment variable to the local IP (real IP, not 127.0.0.1 or localhost), DOCKER_IP_for example: Then, on any linux/mac (someday windows), run the containers: `docker-compose up`
+1. On labtainer vm, build the labtainer.master file and push it to dockerhub, see instructions in labtainer.master.create.
+2. Note: when running docker from linux host, you will have to uncomment the following environment variable in nginx section of the docker-compose.yml file, then set a local environment variable to the local IP (real IP, not 127.0.0.1 or localhost).
+  Uncomment these lines:
+    extra_hosts:
+     - "host.docker.internal:$DOCKER_INTERNAL_IP"
+then, export the environment variable as follows:
+`export DOCKER_INTERNAL_IP=192.168.10.3` (be sure to use your real IP here)
+This is tied to this bug in linux docker... https://github.com/docker/for-linux/issues/264
+3. Then, on any linux/mac (someday windows), run the containers: `docker-compose up`
 4. After about 30 seconds the system should settle, goto http://localhost:3333 to set up realm of "myrealm". 
 5. Setup a client called "nginx" with:
 * "Access Type" set to "confidential"

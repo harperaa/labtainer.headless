@@ -4,7 +4,7 @@
 
 2. edit the Dockerfile master, on the labtainer system, from below director in following directory on labtainer vm.
 
-student@ubuntu:~/labtainer/trunk/scripts/designer/bin$ vi ../workspace_master/Dockerfile.labtainer.master
+student@ubuntu:~/labtainer/trunk/scripts/designer/bin$ vi ../base_dockerfiles/Dockerfile.labtainer.master
 
 3. add below to the bottom of that file.
 

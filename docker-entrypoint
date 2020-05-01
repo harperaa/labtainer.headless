@@ -2,6 +2,9 @@
 
 cat /etc/motd
 
+#fix perms on docker.sock
+chgrp docker /var/run/docker.sock
+
 #Login with user : labtainer
 /wait-for-it.sh novnc:5900 -- xterm > /dev/null 2>&1
 
